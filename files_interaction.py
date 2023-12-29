@@ -3,7 +3,7 @@ import rasterio
 from rasterio import features
 
 
-def geotiff_to_geojson(geotiff_path):
+def generate_geojson(mask, geotiff_path, geojson_name):
     with rasterio.open(geotiff_path) as src:
         band=src.read()
 
@@ -12,4 +12,4 @@ def geotiff_to_geojson(geotiff_path):
 
     fc = ({"geometry": shape, "properties": {"value": value}} for shape, value in shapes)
 
-    gpd.GeoDataFrame.from_features(fc).to_file('test.geojson', driver='GeoJSON')
+    gpd.GeoDataFrame.from_features(fc).to_file(f'{geojson_name}.geojson', driver='GeoJSON')

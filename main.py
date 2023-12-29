@@ -21,3 +21,14 @@ if using_colab:
 
     !wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
 """
+
+import sam_interaction
+import display_images
+import files_interaction
+
+
+if __name__ == "__main__":
+    mask_generator = sam_interaction.load_model()
+    geotiff_path = "resources/geo_tiffs/vegetation.tiff"
+    masks = sam_interaction.predict_masks(mask_generator, geotiff_path)
+    files_interaction.generate_geojson(masks, geotiff_path, "vegetation")

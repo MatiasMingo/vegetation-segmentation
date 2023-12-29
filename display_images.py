@@ -24,9 +24,7 @@ def display_geotiff(geotiff_path):
         plt.show()
 
 def display_geojson(geojson_path):
-    # Read the GeoJSON file using geopandas
-    file_path = 'test.geojson'  # Replace with the path to your GeoJSON file
-    data = gpd.read_file(file_path)
+    data = gpd.read_file(geojson_path)
     geoplot.polyplot(data, projection=gcrs.AlbersEqualArea(), edgecolor='darkgrey', facecolor='lightgrey', linewidth=.3,
     figsize=(12, 8))
 
